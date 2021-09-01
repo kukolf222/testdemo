@@ -96,6 +96,7 @@ $order = 1;
             <a href="insertForm.php" class="btn btn-success">บันทึกข้อมูลพนักงาน</a>
             <?php if ($count > 0): ?>
                 <input type="submit" value="ลบข้อมูล (Checkbox)" class="btn btn-danger">
+                
             <?php endif; ?>
         </form>
         <!-- เลือกทั้งหมด javascript -->

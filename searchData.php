@@ -1,10 +1,10 @@
 <?php
-require('dbconnect.php'); 
-$name=$_POST["empname"]; //พง
-$sql="SELECT * FROM employees WHERE fname LIKE '%$name%' ORDER BY fname ASC ";
-$result=mysqli_query($connect,$sql);
-$count=mysqli_num_rows($result); //นับจำนวนแถวเพื่อแสดงข้อมูลเมื่อมีข้อมูลใน DB
-$order=1;
+require "dbconnect.php";
+$name = $_POST["empname"]; //พง
+$sql = "SELECT * FROM employees WHERE fname LIKE '%$name%' ORDER BY fname ASC ";
+$result = mysqli_query($connect, $sql);
+$count = mysqli_num_rows($result); //นับจำนวนแถวเพื่อแสดงข้อมูลเมื่อมีข้อมูลใน DB
+$order = 1;
 ?>
 <!-- copy จาก indexและแก้ไขเล็กน้อย -->
 <!DOCTYPE html>
@@ -20,7 +20,7 @@ $order=1;
     <div class="container">
     <h1 class="text-center">ข้อมูลพนักงานในฐานข้อมูล</h1>
     <hr>
-    <?php if($count>0){?>
+    <?php if ($count > 0): ?>
         <form action="searchData.php" class="form-group" method="POST">
         <label for="">ค้นหาพนักงาน</label>
         <input type="text" placeholder="ป้อนชื่อพนักงาน" name="empname" class="form-control">
@@ -42,48 +42,47 @@ $order=1;
         </thead>
         <tbody>
         <!-- นำข้อมูลมาแสดงเฉพาะที่ค้นหาเจอ -->
-        <?php while($row=mysqli_fetch_assoc($result)){?>
+        <?php while ($row = mysqli_fetch_assoc($result)): ?>
             <tr>
                 <td><?php echo $order++; ?></td>
                 <td><?php echo $row["fname"]; ?></td>
                 <td><?php echo $row["lname"]; ?></td>
                 <td>
-                <?php if($row["gender"] == "male"){?>
+                <?php if ($row["gender"] == "male"): ?>
                         ชาย
-                <?php } else if ($row["gender"] == "female"){?>
+                <?php elseif ($row["gender"] == "female"): ?>
                         หญิง
-                <?php }else{?>
+                <?php else: ?>
                         อื่นๆ
-                <?php } ?>
+                <?php endif; ?>
                 </td>
                 <td><?php echo $row["skills"]; ?></td>
                 <td>
-                    <a href="editForm.php?id=<?php echo $row["id"]; ?>" class="btn btn-primary">แก้ไข</a>
+                    <a href="editForm.php?id=<?php echo "{$row["id"]}"; ?>" class="btn btn-primary">แก้ไข</a>
                 </td>
                 <td>
-                    <a href="deleteQueryString.php?idemp=<?php echo $row["id"]; ?>" 
+                    <a href="deleteQueryString.php?idemp=<?php echo "{$row["id"]}"; ?>" 
                     class= "btn btn-danger"
                     onclick="return confirm('ต้องการลบข้อมูลหรือไม่')"
                     >ลบข้อมูล</a>
                 </td>
                 <form action="multipleDelete.php" method="post">
                     <td>
-                    <input type="checkbox" name="idcheckbox[]" value="<?php echo $row["id"];?>">
+                    <input type="checkbox" name="idcheckbox[]" value="<?php echo "{$row["id"]}"; ?>">
                     </td>              
             </tr>
-        <?php } ?>
+        <?php endwhile; ?>
         </tbody>
     </table>
-    <?php }else{ ?>
+    <?php else: ?>
         <div class="alert alert-danger">
             <b>ไม่มีข้อมูลพนักงาน !!!<b>
         </div>
-    <?php } ?>
+    <?php endif; ?>
     <a href="index.php" class="btn btn-success">กลับหน้าแรก</a>
-    <?php if($count>0){?>
-        <input type="submit" value="ลบข้อมูล (Checkbox)" class="btn btn-danger">
-        
-    <?php } ?>
+    <?php if ($count > 0): ?>
+        <input type="submit" value="ลบข้อมูล (Checkbox)" class="btn btn-danger">   
+    <?php endif; ?>
     </form>
     <button class="btn btn-info" onclick="checkAll()">เลือกทั้งหมด</button>
     <button class="btn btn-warning" onclick="uncheckAll()">ยกเลิก</button>

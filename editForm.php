@@ -1,10 +1,12 @@
 <?php
-require('dbconnect.php'); 
-$id=$_GET["id"];
-$sql="SELECT * FROM employees WHERE id = $id";
-$result=mysqli_query($connect,$sql);
-$row=mysqli_fetch_assoc($result);
-$skill_arr=array("Java","PHP","Python","HTML"); //เตรียมตัวเลือกในแบบฟอร์ม
+require "dbconnect.php";
+$id = $_GET["id"];
+$sql = "SELECT * FROM employees WHERE id = $id";
+$result = mysqli_query($connect, $sql);
+$row = mysqli_fetch_assoc($result);
+$skill_arr = ["Java", "PHP", "Python", "HTML"];
+
+//เตรียมตัวเลือกในแบบฟอร์ม
 ?>
 <!-- copy จาก insertform และแก้ไขเล็กน้อย -->
 <!DOCTYPE html>
@@ -22,48 +24,45 @@ $skill_arr=array("Java","PHP","Python","HTML"); //เตรียมตัวเ
         <!-- ส่งข้อมูลไป updatedata ต่อ -->
         <form action="updateData.php" method="POST">
             <!-- hiddenเพื่อไม่ให้แก้ไข id -->
-          <input type="hidden" value="<?php echo $row["id"];?>" name="id"> 
+          <input type="hidden" value="<?php echo $row["id"]; ?>" name="id"> 
           <!-- textbox นำ value จาก DB มาใส่ -->
           <div class="form-group">
                 <label for="firstname">ชื่อ</label>
-                <input type="text" name="fname" id="" class="form-control" value="<?php echo $row["fname"];?>">
+                <input type="text" name="fname" id="" class="form-control" value="<?php echo "{$row["fname"]}"; ?>">
           </div>
           <div class="form-group">
                 <label for="lastname">นามสกุล</label>
-                <input type="text" name="lname" id="" class="form-control" value="<?php echo $row["lname"];?>">
+                <input type="text" name="lname" id="" class="form-control" value="<?php echo "{$row["lname"]}"; ?>">
           </div>
           <!-- radio ทำเงื่อนไข check เฉพาะเพศที่เลือก -->
           <div class="form-group">
                 <label for="gender">เพศ</label>
-                <?php
-                if($row["gender"] == "male"){
-                    echo "<input type='radio' name='gender' value='male' checked>ชาย";
-                    echo "<input type='radio' name='gender' value='female'>หญิง";
-                    echo "<input type='radio' name='gender' value='other'>อื่นๆ";
-                } else if($row["gender"] == "female"){
-                    echo "<input type='radio' name='gender' value='male'>ชาย";
-                    echo "<input type='radio' name='gender' value='female' checked>หญิง";
-                    echo "<input type='radio' name='gender' value='other'>อื่นๆ";
-                }else{
-                    echo "<input type='radio' name='gender' value='male'>ชาย";
-                    echo "<input type='radio' name='gender' value='female'>หญิง";
-                    echo "<input type='radio' name='gender' value='other' checked>อื่นๆ";
-                }
-                ?>
+                <?php if ($row["gender"] == "male"):
+                  echo "<input type='radio' name='gender' value='male' checked>ชาย";
+                  echo "<input type='radio' name='gender' value='female'>หญิง";
+                  echo "<input type='radio' name='gender' value='other'>อื่นๆ";
+                elseif ($row["gender"] == "female"):
+                  echo "<input type='radio' name='gender' value='male'>ชาย";
+                  echo "<input type='radio' name='gender' value='female' checked>หญิง";
+                  echo "<input type='radio' name='gender' value='other'>อื่นๆ";
+                else:
+                  echo "<input type='radio' name='gender' value='male'>ชาย";
+                  echo "<input type='radio' name='gender' value='female'>หญิง";
+                  echo "<input type='radio' name='gender' value='other' checked>อื่นๆ";
+                endif; ?>
           </div>
           <div class="form-group">
                 <label for="">ทักษะ</label>
                 <?php
-                    $skill=explode(",",$row["skills"]);//แปลง string array ทักษะของพนักงาน
-                    foreach($skill_arr as $value){
-                        if(in_array($value,$skill)){
-                            echo "<input type='checkbox' name='skills[]' value='$value' checked> $value";
-                        }else{
-                            echo "<input type='checkbox' name='skills[]' value='$value'> $value";
-                        }
-                    }
-                ?>
-           
+                $skill = explode(",", $row["skills"]); //แปลง string array ทักษะของพนักงาน
+                foreach ($skill_arr as $value):
+                  if (in_array($value, $skill)):
+                    echo "<input type='checkbox' name='skills[]' value='$value' checked> $value";
+                  else:
+                    echo "<input type='checkbox' name='skills[]' value='$value'> $value";
+                  endif;
+                endforeach;
+                ?> 
           </div>
           <input type="submit" value="อัปเดตข้อมูล" class="btn btn-success">
           <input type="reset" value="ล้างข้อมูล" class="btn btn-danger">
