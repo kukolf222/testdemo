@@ -20,6 +20,7 @@ $order = 1;
     <div class="container">
     <h1 class="text-center">ข้อมูลพนักงานในฐานข้อมูล</h1>
     <hr>
+    <form action="multipleDelete.php" method="post">
     <?php if ($count > 0): ?>
         <form action="searchData.php" class="form-group" method="POST">
         <label for="">ค้นหาพนักงาน</label>
@@ -66,7 +67,7 @@ $order = 1;
                     onclick="return confirm('ต้องการลบข้อมูลหรือไม่')"
                     >ลบข้อมูล</a>
                 </td>
-                <form action="multipleDelete.php" method="post">
+                
                     <td>
                     <input type="checkbox" name="idcheckbox[]" value="<?php echo "{$row["id"]}"; ?>">
                     </td>              
