@@ -4,9 +4,7 @@ $id = $_GET["id"];
 $sql = "SELECT * FROM employees WHERE id = $id";
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_assoc($result);
-$skill_arr = ["Java", "PHP", "Python", "HTML"];
-
-//เตรียมตัวเลือกในแบบฟอร์ม
+$skill_arr = ["Java", "PHP", "Python", "HTML"];//เตรียมตัวเลือกในแบบฟอร์ม
 ?>
 <!-- copy จาก insertform และแก้ไขเล็กน้อย -->
 <!DOCTYPE html>

@@ -1,6 +1,6 @@
 <?php
 require "dbconnect.php";
-$sql = "SELECT * FROM employees ORDER BY fname ASC "; //เชื่อม db เพื่อเอาข้อมูลใน DB มาแสดงในตาราง
+$sql = "SELECT * FROM employees ORDER BY fname ASC"; //เชื่อม db เพื่อเอาข้อมูลใน DB มาแสดงในตาราง
 $result = mysqli_query($connect, $sql);
 $count = mysqli_num_rows($result); //นับจำนวนแถวเพื่อแสดงข้อมูลเมื่อมีข้อมูลใน DB
 // $count = $result ? mysqli_num_rows($result) : 0; //นับจำนวนแถวเพื่อแสดงข้อมูลเมื่อมีข้อมูลใน DB
@@ -46,7 +46,6 @@ $order = 1;
                             <th>แก้ไขข้อมูล</th>
                             <th>ลบข้อมูล</th>
                             <th>ลบข้อมูล (Checkbox)</th>
-                            
                         </tr>
                     </thead>
                     <tbody>

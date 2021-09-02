@@ -20,13 +20,14 @@ $order = 1;
     <div class="container">
     <h1 class="text-center">ข้อมูลพนักงานในฐานข้อมูล</h1>
     <hr>
-    <form action="multipleDelete.php" method="post">
+    
     <?php if ($count > 0): ?>
         <form action="searchData.php" class="form-group" method="POST">
         <label for="">ค้นหาพนักงาน</label>
         <input type="text" placeholder="ป้อนชื่อพนักงาน" name="empname" class="form-control">
         <input type="submit" value="ค้นหา" class="btb btn-dark my-2">
         </form>
+    <form action="multipleDelete.php" method="post">
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -37,8 +38,7 @@ $order = 1;
                 <th>ทักษะ</th>
                 <th>แก้ไขข้อมูล</th>
                 <th>ลบข้อมูล</th>
-                <th>ลบข้อมูล (Checkbox)</th>
-                
+                <th>ลบข้อมูล (Checkbox)</th> 
             </tr>
         </thead>
         <tbody>
@@ -67,7 +67,7 @@ $order = 1;
                     onclick="return confirm('ต้องการลบข้อมูลหรือไม่')"
                     >ลบข้อมูล</a>
                 </td>
-                
+                    
                     <td>
                     <input type="checkbox" name="idcheckbox[]" value="<?php echo "{$row["id"]}"; ?>">
                     </td>              
@@ -85,22 +85,29 @@ $order = 1;
         <input type="submit" value="ลบข้อมูล (Checkbox)" class="btn btn-danger">   
     <?php endif; ?>
     </form>
-    <button class="btn btn-info" onclick="checkAll()">เลือกทั้งหมด</button>
-    <button class="btn btn-warning" onclick="uncheckAll()">ยกเลิก</button>
+    <button class="btn btn-info" onclick="toggleCheckAll()">เลือกทั้งหมด</button>
+    <button class="btn btn-warning" onclick="toggleCheckAll(false)">ยกเลิก</button>
+    
     </div>
 </body>
 <script>
-function checkAll(){
-    var form_element=document.forms[1].length;
-    for(i=0;i<form_element-1;i++){
-        document.forms[1].elements[i].checked=true;
+// function checkAll(){
+//     var form_element=document.forms[1].length;
+//     for(i=0;i<form_element-1;i++){
+//         document.forms[1].elements[i].checked=true;
+//     }
+// }
+// function uncheckAll(){
+//     var form_element=document.forms[1].length;
+//     for(i=0;i<form_element-1;i++){
+//         document.forms[1].elements[i].checked=false;
+//     }
+// }
+function toggleCheckAll(checked = true) {
+        const cbs = document.querySelectorAll('input[name="idcheckbox[]"]');
+        cbs.forEach((cb) => {
+            cb.checked = checked;
+        });
     }
-}
-function uncheckAll(){
-    var form_element=document.forms[1].length;
-    for(i=0;i<form_element-1;i++){
-        document.forms[1].elements[i].checked=false;
-    }
-}
 </script>
 </html>
