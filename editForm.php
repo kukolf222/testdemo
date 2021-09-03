@@ -66,7 +66,7 @@ $skill_arr = ["Java", "PHP", "Python", "HTML"];
           </div>
           <div class="form-group">
                 <label for="image">รูปถ่าย</label>
-                <input type="file" name="fileupload" class="form-control" value="<?php echo "<"<file src='fileupload/".$row["fileupload"]."'>"; ?>">
+                <input type="file" name="fileupload" class="form-control" value="<?php echo "{$row["fileupload"]}"; ?>">
           </div>
           <input type="submit" value="อัปเดตข้อมูล" class="btn btn-success">
           <input type="reset" value="ล้างข้อมูล" class="btn btn-danger">
