@@ -46,6 +46,7 @@ $order = 1;
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
             <tr>
                 <td><?php echo $order++; ?></td>
+                <td><?php echo "<img src='fileupload/".$row["fileupload"]."' width='50'>"; ?></td>
                 <td><?php echo $row["fname"]; ?></td>
                 <td><?php echo $row["lname"]; ?></td>
                 <td>

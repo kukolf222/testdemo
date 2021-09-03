@@ -4,7 +4,9 @@ $id = $_GET["id"];
 $sql = "SELECT * FROM employees WHERE id = $id";
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_assoc($result);
-$skill_arr = ["Java", "PHP", "Python", "HTML"];//เตรียมตัวเลือกในแบบฟอร์ม
+$skill_arr = ["Java", "PHP", "Python", "HTML"];
+
+//เตรียมตัวเลือกในแบบฟอร์ม
 ?>
 <!-- copy จาก insertform และแก้ไขเล็กน้อย -->
 <!DOCTYPE html>
@@ -20,7 +22,7 @@ $skill_arr = ["Java", "PHP", "Python", "HTML"];//เตรียมตัวเ�
     <div class="container my-3">
         <h2 class="text-center">แบบฟอร์มแก้ไขข้อมูล</h2>
         <!-- ส่งข้อมูลไป updatedata ต่อ -->
-        <form action="updateData.php" method="POST">
+        <form action="updateData.php" method="POST" enctype="multipart/form-data">
             <!-- hiddenเพื่อไม่ให้แก้ไข id -->
           <input type="hidden" value="<?php echo $row["id"]; ?>" name="id"> 
           <!-- textbox นำ value จาก DB มาใส่ -->
@@ -61,6 +63,10 @@ $skill_arr = ["Java", "PHP", "Python", "HTML"];//เตรียมตัวเ�
                   endif;
                 endforeach;
                 ?> 
+          </div>
+          <div class="form-group">
+                <label for="image">รูปถ่าย</label>
+                <input type="file" name="fileupload" class="form-control" value="<?php echo "<"<file src='fileupload/".$row["fileupload"]."'>"; ?>">
           </div>
           <input type="submit" value="อัปเดตข้อมูล" class="btn btn-success">
           <input type="reset" value="ล้างข้อมูล" class="btn btn-danger">

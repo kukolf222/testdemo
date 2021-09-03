@@ -11,7 +11,7 @@
     <div class="container my-3">
         <h2 class="text-center">แบบฟอร์มบันทึกข้อมูล</h2>
         <!-- ไปที่ insetdata ต่อ -->
-        <form action="insertData.php" method="POST">
+        <form action="insertData.php" method="POST" enctype="multipart/form-data">
           <div class="form-group">
                 <label for="firstname">ชื่อ</label>
                 <input type="text" name="fname" id="" class="form-control">
@@ -33,6 +33,11 @@
                 <input type="checkbox" name="skills[]" value="Python"> Python
                 <input type="checkbox" name="skills[]" value="HTML"> HTML                
           </div>
+          <div class="form-group">
+                <label for="image">รูปถ่าย</label>
+                <input type="file" name="fileupload" class="form-control">
+          </div>
+          
           <input type="submit" value="บันทึกข้อมูล" class="btn btn-success">
           <input type="reset" value="ล้างข้อมูล" class="btn btn-danger">
           <a href="index.php" class="btn btn-primary">กลับหน้าแรก</a>

@@ -39,6 +39,7 @@ $order = 1;
                     <thead>
                         <tr>
                             <th>ลำดับที่</th>
+                            <th>รูปภาพ</th>
                             <th>ชื่อ</th>
                             <th>นามสกุล</th>
                             <th>เพศ</th>
@@ -53,6 +54,7 @@ $order = 1;
                         <?php while ($row = mysqli_fetch_assoc($result)): ?>
                         <tr>
                             <td><?php echo $order++; ?></td>
+                            <td><?php echo "<img src='fileupload/".$row["fileupload"]."' width='50'>"; ?></td>
                             <td><?php echo $row["fname"]; ?></td>
                             <td><?php echo $row["lname"]; ?></td>
                             <td>
