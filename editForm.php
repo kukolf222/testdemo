@@ -64,9 +64,12 @@ $skill_arr = ["Java", "PHP", "Python", "HTML"];
                 endforeach;
                 ?> 
           </div>
+          <?php echo "<img src='fileupload/" .
+            $row["fileupload"] .
+            "' width='50'>"; ?>
           <div class="form-group">
-                <label for="image">รูปถ่าย</label>
-                <input type="file" name="fileupload" class="form-control" value="<?php echo "{$row["fileupload"]}"; ?>">
+                <label for="image">รูปถ่าย ถ้าใช้รูปภาพเดิมไม่ต้องใส่รูปภาพเพิ่ม</label>
+                <input type="file" name="fileupload" class="form-control">
           </div>
           <input type="submit" value="อัปเดตข้อมูล" class="btn btn-success">
           <input type="reset" value="ล้างข้อมูล" class="btn btn-danger">
