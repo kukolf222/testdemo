@@ -55,7 +55,7 @@ $order = 1;
                         <tr>
                             <td><?php echo $order++; ?></td>
                             <td>
-                                <?php if ($row["fileupload"] != ""):
+                                <?php if (!empty($row["fileupload"])):
                                   echo "<img src='fileupload/" .
                                     $row["fileupload"] .
                                     "' width='50'>";

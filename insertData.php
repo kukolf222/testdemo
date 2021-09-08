@@ -3,7 +3,7 @@
 require "dbconnect.php";
 //รับค่าที่ส่งมาจากฟอร์มลงในตัวแปร
 // $fileupload = $_post["fileupload"];
-$fileupload = isset($_POST["fileupload"]) ? $_POST["fileupload"] : ""; //จะมีการ upload file หรือไม่ก็ตามจะปิดการแจ้ง error
+// $fileupload = isset($_POST["fileupload"]) ? $_POST["fileupload"] : ""; //จะมีการ upload file หรือไม่ก็ตามจะปิดการแจ้ง error
 $fname = $_POST["fname"];
 $lname = $_POST["lname"];
 $gender = $_POST["gender"];
