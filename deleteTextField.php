@@ -1,7 +1,6 @@
 <?php
 require "dbconnect.php";
 $id = $_POST["idemployee"];
-
 $sql = "DELETE FROM employees WHERE id = $id";
 $result = mysqli_query($connect, $sql);
 if ($result):

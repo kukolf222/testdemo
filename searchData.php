@@ -20,7 +20,6 @@ $order = 1;
     <div class="container">
     <h1 class="text-center">ข้อมูลพนักงานในฐานข้อมูล</h1>
     <hr>
-    
     <?php if ($count > 0): ?>
         <form action="searchData.php" class="form-group" method="POST">
         <label for="">ค้นหาพนักงาน</label>
@@ -47,7 +46,9 @@ $order = 1;
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
             <tr>
                 <td><?php echo $order++; ?></td>
-                <td><?php echo "<img src='fileupload/".$row["fileupload"]."' width='50'>"; ?></td>
+                <td><?php echo "<img src='fileupload/" .
+                  $row["fileupload"] .
+                  "' width='50'>"; ?></td>
                 <td><?php echo $row["fname"]; ?></td>
                 <td><?php echo $row["lname"]; ?></td>
                 <td>
