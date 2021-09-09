@@ -16,6 +16,8 @@ $order = 1;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ข้อมูลพนักงาน</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
@@ -77,12 +79,13 @@ $order = 1;
                             <td><?php echo $row["skills"]; ?></td>
                             <!-- แก้ไขข้อมูล -->
                             <td>
-                                <a href="editForm.php?id=<?php echo "{$row["id"]}"; ?>" class="btn btn-primary">แก้ไข</a>
+                            <a href="editForm.php?id=<?php echo "{$row["id"]}"; ?>" class="btn btn-primary">แก่ไข</a>
+            
                             </td>
                             <!-- ลบข้อมูลแบบ Querystring -->
                             <td>
-                                <a href="deleteQueryString.php?idemp=<?php echo "{$row["id"]}"; ?>" 
-                                class= "btn btn-danger"
+                                <a href="#"  
+                                id="<?php echo "{$row["id"]}"; ?>" class= "btn btn-danger delete_data"
                                 onclick="return confirm('ต้องการลบข้อมูลหรือไม่')"
                                 >ลบข้อมูล</a>
                             </td>
@@ -132,6 +135,32 @@ $order = 1;
             cb.checked = checked;
         });
     }
+    // $(document).ready(function(){
+    $('.delete_data').click(function(){
+        var uid=$(this).attr("id");
+        $.ajax({
+            url :"deleteQueryString.php",
+            method:"post",
+            data:{idemp:uid},
+            success:function(data){
+            location.reload();
+            }
+        });
+    });
+    // $('.edit_data').click(function(){
+    //     var uid=$(this).attr("id");
+    //     $.ajax({
+    //         url :"editForm.php",
+    //         method:"post",
+    //         data:{id:uid},
+    //         success:function(data){
+    //         // location.reload(); 
+    //         location.href = "editForm.php";
+    //         }
+    //     });
+    // });
+// });
+
     </script>
 </body>
 </html>

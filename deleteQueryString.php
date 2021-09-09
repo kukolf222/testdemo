@@ -1,6 +1,6 @@
 <?php
 require "dbconnect.php";
-$id = $_GET["idemp"];
+$id = $_POST['idemp'];
 $sql = "SELECT fileupload FROM employees WHERE id=$id "; // ดึงข้อมูลจาก db เอาฃื่อไฟล์ของข้อมูล
 $result = mysqli_query($connect, $sql);
 $file = mysqli_fetch_assoc($result); //ดึงข้อมูลออกมาเป็น arrey

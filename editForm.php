@@ -1,6 +1,7 @@
 <?php
 require "dbconnect.php";
-$id = $_GET["id"];
+// var_dump($_POST['id']);exit();
+$id = $_GET['id'];
 $sql = "SELECT * FROM employees WHERE id = $id";
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_assoc($result);
