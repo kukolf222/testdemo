@@ -1,7 +1,7 @@
 <?php
 require "dbconnect.php";
 $id = $_POST["id"];
-$fileupload = isset($_POST["fileupload"]) ? $_POST["fileupload"] : "";
+// $fileupload = isset($_POST["fileupload"]) ? $_POST["fileupload"] : "";
 $fname = $_POST["fname"];
 $lname = $_POST["lname"];
 $gender = $_POST["gender"];
@@ -12,6 +12,11 @@ $numrand = mt_rand();
 // เพิ่มไฟล์
 $upload = $_FILES["fileupload"];
 if (isset($upload) && $upload["size"] > 0):
+  $sql = "SELECT fileupload FROM employees WHERE id=$id ";
+  $result = mysqli_query($connect, $sql);
+  $file = mysqli_fetch_assoc($result);
+  $newname = $file["fileupload"];
+  unlink("fileupload/$newname");
   // ถ้าการมีไฟล์ Upload ขนาดมากกว่า0 และชื่อไฟล์ไม่เท่ากับค่าว่าง
   //โฟลเดอร์ที่จะ Upload file เข้าไป
   $path = "fileupload/";

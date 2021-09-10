@@ -1,11 +1,12 @@
 <?php
 require "dbconnect.php";
 // var_dump($_POST['id']);exit();
-$id = $_GET['id'];
+$id = $_GET["id"];
 $sql = "SELECT * FROM employees WHERE id = $id";
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_assoc($result);
 $skill_arr = ["Java", "PHP", "Python", "HTML"];
+$gender_arr = ["male", "female", "other"];
 
 //เตรียมตัวเลือกในแบบฟอร์ม
 ?>
@@ -38,19 +39,16 @@ $skill_arr = ["Java", "PHP", "Python", "HTML"];
           <!-- radio ทำเงื่อนไข check เฉพาะเพศที่เลือก -->
           <div class="form-group">
                 <label for="gender">เพศ</label>
-                <?php if ($row["gender"] == "male"):
-                  echo "<input type='radio' name='gender' value='male' checked>ชาย";
-                  echo "<input type='radio' name='gender' value='female'>หญิง";
-                  echo "<input type='radio' name='gender' value='other'>อื่นๆ";
-                elseif ($row["gender"] == "female"):
-                  echo "<input type='radio' name='gender' value='male'>ชาย";
-                  echo "<input type='radio' name='gender' value='female' checked>หญิง";
-                  echo "<input type='radio' name='gender' value='other'>อื่นๆ";
-                else:
-                  echo "<input type='radio' name='gender' value='male'>ชาย";
-                  echo "<input type='radio' name='gender' value='female'>หญิง";
-                  echo "<input type='radio' name='gender' value='other' checked>อื่นๆ";
-                endif; ?>
+                <?php
+                $gender = explode(",", $row["gender"]);
+                foreach ($gender_arr as $value):
+                  if (in_array($value, $gender)):
+                    echo "<input type='radio' name='gender' value='$value' checked> $value";
+                  else:
+                    echo "<input type='radio' name='gender' value='$value'> $value";
+                  endif;
+                endforeach;
+                ?>
           </div>
           <div class="form-group">
                 <label for="">ทักษะ</label>
